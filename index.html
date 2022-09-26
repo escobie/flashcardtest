@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Flash Cards</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="mobile.css" />
+    <script type="text/javascript" src="./questionsJSON/arbeitsRechtFragen.json"></script>   
+    <script type="text/javascript" src="./questionsJSON/vokabeln.json"></script>   
+    <script type="text/javascript" src="./questionsJSON/hgbFragen.json"></script>   
+    <script type="text/javascript" src="./questionsJSON/orgaFragen.json"></script>   
+    <script type="text/javascript" src="./questionsJSON/interkulturelleKompetenzen.json"></script>   
+    <script type="text/javascript" src="./questionsJSON/internationalesManagement.json"></script>   
+    <script type="text/javascript" src="./questionsJSON/integrierteKommunikation.json"></script>   
+    <script type="text/javascript" src="./questionsJSON/medienRecht.json"></script>   
+    <script type="text/javascript" src="./questionsJSON/unternehmensEthik.json"></script>   
+    <script type="text/javascript" src="./questionsJSON/somFragen.json"></script>   
+    <script type="text/javascript" src="./questionsJSON/bapFragen.json"></script>   
+</head>
+<body>
+    <section class="container">
+        <div class="head">
+            <lable class="lable" for="kartendecks">Wähle deinen Kartensatz:</lable>
+            <select class="decks" name="kartendecks" id="decks">
+                <option id="bap" value="bap">Business and Performance Management</option>
+                <option id="som" value="som">Service and Operations Management</option>
+                <option id="u-ethik" value="u-ethik">Unternehmensethik</option>
+                <option id="m-recht" value="m-recht">Medienrecht</option>
+                <option id="int-komm" value="int-komm">Integrierte Unternehmenskommunikation</option>
+                <option id="int-management" value="int-management">Internationales Management</option>
+                <option id="int-kompetenzen" value="int-kompetenzen">Internationale Kompetenzen</option>
+                <option id="organisation" value="organisation">Organisation und Führung</option>
+                <option id="arb-recht" value="arb-recht">Arbeitsrecht</option>
+                <option id="h-recht" value="h-recht">Handelsrecht</option>
+                <option id="vokabeln" value="vokabeln">vokablen</option>
+            </select>
+        </div>
+
+    <button type="button" class="correct next">hab ich gewusst</button>
+
+    <div class="card">
+        <div class="front">
+            <section class="content">
+                <h2>Frage:</h2>
+                <p class="question"></p>
+                <input class="answer" type="text" placeholder="translation">
+                <button type="button" class="check_answer">&uuml;berpr&uuml;fen</button>
+            </section>
+        </div>
+        <div class="back">
+                <button class="return">was war die Frage?</button>
+                <section class="content">
+                        <h2>Antwort:</h2>
+                    <p class="solution">...</p>
+                    <button type="button" class="new_word">neue Frage</button>
+                </section>
+        </div>
+    </div>
+
+    <button type="button" class="wrong next">beim nächsten Mal</button>
+
+    <h4 id="known">Bisher gewusst:</h4>
+    <h3 class="remaining"></h3>
+    <h4 id="next">Nächste Runde:</h4>
+    <button type="button" class="reload">ganz von vorn</button>
+
+    </section>
+
+    <script src="main.js"></script>
+</body>
+</html>
