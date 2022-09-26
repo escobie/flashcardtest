@@ -23,17 +23,8 @@ let reloadBUTTON = document.querySelector(".reload");
 let returnBUTTON = document.querySelector(".return");
 // card-deck-choice-fields
 const cardDeckOptions = [
-    "bap",
-    "som",
-    "u-ethik",
-    "m-recht",
-    "int-komm",
-    "int-management",
-    "int-kompetenzen",
-    "organisation",
-    "arb-recht",
-    "h-recht",
-    "vokabeln",
+    "physics",
+    "chem",
 ];
 
 // Text below the Cards
@@ -96,14 +87,14 @@ function displayQuestion(rP) {
     // turn card to front-side
     card.classList.remove("flipped");
     // write question on front-side of the card
-    question.innerHTML = rP["Frage"];
+    question.innerHTML = rP["Question"];
     // add hidden to the last answer, so the card-size rescales down (to question-size)
     solution.classList.add("hidden");
 
     // display current stack of cards
-    remainingCards.innerHTML = `Es sind noch ${questionSet.length} Karten im Deck`
-    knownCards.innerHTML = `Bisher gewusst: ${knownCardsCounter}`; 
-    nextCards.innerHTML = `Nächste Runde: ${nextRound.length}`; 
+    remainingCards.innerHTML = `There are still ${questionSet.length} cards in the deck`
+    knownCards.innerHTML = `Known so far: ${knownCardsCounter}`; 
+    nextCards.innerHTML = `Next round: ${nextRound.length}`; 
 }
 
 // used inside of "flipBackAndDisplayAnswer" to split multiple answers
@@ -122,7 +113,7 @@ function flipBackAndDisplayAnswer() {
     // the solution-text is hidden (so the card-size isn't too big from the last answer)
     solution.classList.remove("hidden");
 
-    // if no input no "nächste Frage"
+    // if no input no "next question"
     if (randomPair["input"]) newWordBUTTON.classList.remove("hidden");
     else newWordBUTTON.classList.add("hidden");
 
@@ -130,14 +121,14 @@ function flipBackAndDisplayAnswer() {
     let answer = document.querySelector(".answer");
     if (randomPair["input"]) {
         answer = answer.value;
-        if (answer == randomPair["Antwort"]) solution.innerHTML = "Korrekt!";
-        else solution.innerHTML = `Leider nein leider garnischt.<br>Die richtige Antwort wäre <em>"${randomPair["Antwort"]}"</em> gewesen.`;
+        if (answer == randomPair["Answer"]) solution.innerHTML = "Correct!";
+        else solution.innerHTML = `Incorrect.<br>The correct answer would be <em>"${randomPair["Answer"]}"</em>.`;
     } else {
         // create List of possible multiple-answer
-        let answerList = splitPhraseIfSeveralNumbers(randomPair["Antwort"]);
+        let answerList = splitPhraseIfSeveralNumbers(randomPair["Answer"]);
         // if it is just one answer display it
-        if (typeof answerList == "string") solution.innerHTML = randomPair["Antwort"];
-        // if muslitple answers display them as a list
+        if (typeof answerList == "string") solution.innerHTML = randomPair["Answer"];
+        // if mulitple answers display them as a list
         else {
             solution.innerHTML = "";
             let answerListDOM = document.createElement("ol");
@@ -172,7 +163,7 @@ function newCard() {
 
 // removes current randomPair of question Answer from global questionSet-Array of objects
 function removeCardFromSet(correct) {
-    let idx = questionSet.findIndex(qa => qa["Frage"] == randomPair["Frage"]);
+    let idx = questionSet.findIndex(qa => qa["Question"] == randomPair["Question"]);
     let card = questionSet[idx];
     if (correct) {
         questionSet.splice(idx, 1);
@@ -184,10 +175,10 @@ function removeCardFromSet(correct) {
     if (questionSet.length > 0 || nextRound.length > 0) newCard();
 }
 
-// attache the show-result function to the button on frontside of card
+// attach the show-result function to the button on frontside of card
 checkAnswerBUTTON.addEventListener("click", flipBackAndDisplayAnswer);
 
-// attache newWord-function to button on backside of card
+// attach newWord-function to button on backside of card
 newWordBUTTON.addEventListener("click", newCard);
 
 // attache functionality "newCard" to wrong-button
